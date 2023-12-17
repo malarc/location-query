@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  main:
+    banner-mode: CONSOLE
+  banner:
+    location: banner.txt
+  application:
+    name: Location Query Service
+  r2dbc:
+    url: r2dbc:postgresql://r2dbcserver.postgres.database.azure.com:5432/postgres?sslmode=require
+    username: superuser@r2dbcserver
+    password: Admin123
+    properties:
+      sslMode: REQUIRE
+
+
+logging:
+  level:
+    io.r2dbc.postgresql.QUERY: INFO
+    io.r2dbc.postgresql.PARAM: INFO
+
+
+
+
