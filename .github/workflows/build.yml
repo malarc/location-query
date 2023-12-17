@@ -35,11 +35,11 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_CONTAINER_REGISTRY: "your-azure-container-registry"
-  CONTAINER_NAME: "your-container-name"
-  RESOURCE_GROUP: "your-resource-group"
-  CLUSTER_NAME: "your-cluster-name"
-  DEPLOYMENT_MANIFEST_PATH: "your-deployment-manifest-path"
+  AZURE_CONTAINER_REGISTRY: "locationpocregistry"
+  CONTAINER_NAME: "location-service"
+  RESOURCE_GROUP: "locationrg"
+  CLUSTER_NAME: "locationpocaks"
+  DEPLOYMENT_MANIFEST_PATH: "kubernetes-manifests/Deployment.yml"
 
 jobs:
   buildImage:
