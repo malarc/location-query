@@ -13,8 +13,7 @@ spring:
     username: superuser@r2dbcserver
     password: Admin123
     properties:
-      sslMode: REQUIRE
-
+      sslMode: require
 
 logging:
   level:
