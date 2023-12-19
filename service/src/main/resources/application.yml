@@ -9,7 +9,7 @@ spring:
   application:
     name: Location Query Service
   r2dbc:
-    url: r2dbc:postgresql://r2dbcserver.postgres.database.azure.com:5432/postgres?sslmode=require
+    url: r2dbc:postgresql://r2dbcserver.postgres.database.azure.com:5432/postgres?sslmode=require&EncryptionMethod=SSL&ValidateServerCertificate=false
     username: superuser@r2dbcserver
     password: Admin123
     properties:
