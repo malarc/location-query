@@ -31,6 +31,10 @@ public class LocationMaster {
 
     private String longitude;
 
+    private String alternateCodes;
+
+    private String country;
+
 
 
 }
