@@ -1,0 +1,54 @@
+openapi: 3.0.1
+info:
+  title: Location service API
+  description: APIs for performing searching location.
+  contact:
+    name: Malarvizhi
+    email: tc.malarvizhi@gmail.com
+
+  version: 1.0.1
+
+servers:
+  - url: http://20.212.103.104:8084
+    description: kubernetes Url
+
+paths:
+  /locations/search:
+    post:
+      tags:
+        - Location Query service
+      summary: Location search parameter is passed
+      requestBody:
+        description: Location search request parameter is passed
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationSearchRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/CreateCaseSimpleSuccessResponse'
+
+components:
+  schemas:
+    LocationSearchRequest:
+      type: object
+      properties:
+        locationName:
+          type: string
+          description: locationName
+          example: Aizoain
+        locationId:
+          pattern: '[a-zA-Z0-9-]{3,20}'
+          type: string
+          description: locationId
+          example: "005C15MOXE1JU"
+        locationType:
+          pattern: '[a-zA-Z0-9-]{3,20}'
+          type: string
+          description: locationType
+          example: "City1"

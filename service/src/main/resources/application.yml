@@ -8,6 +8,45 @@ spring:
     location: banner.txt
   application:
     name: Location Query Service
+  allow-bean-definition-overriding: true
+  lazy-initialization: true
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+  kafka:
+    listener:
+      concurrency: 1
+      ack-mode: MANUAL_IMMEDIATE
+    auto:
+      create:
+        topics:
+          enable: true
+    #bootstrap-servers: localhost:29092
+    bootstrap-servers: pkc-6ojv2.us-west4.gcp.confluent.cloud:9092
+    username: YGZWSL4IE7B7EUKG
+    password: yXBPPcK4ZIHRII0ybeGpFaXsLDJn8HBFHLnvgkJC8SApSQ46mhyR/NnOmbzVu0WF
+    kafka:
+      listener:
+        concurrency: 1
+        ack-mode: manual
+        auto:
+          create:
+            topics:
+              enable: true
+        bootstrap-servers: pkc-4r087.us-west2.gcp.confluent.cloud:9092
+      consumer:
+        topic: apmm.locationref.topic.internal.any.v1
+        concurrency: 1
+        sessionTimeout: 30000
+        max-poll-records: 10
+        max-poll-timeout: 5000
+        heart-beat-interval-ms: 3000
+        max-fetch-size-bytes: 2097164
+        group-id: lkc-nxqk56
+        #lkc-0djrwp
+        auto-offset-reset: earliest
+
+
   r2dbc:
     url: r2dbc:postgresql://locationpostgres.postgres.database.azure.com:5432/postgres
     username: superuser
@@ -15,18 +54,43 @@ spring:
     properties:
       sslMode: REQUIRE
 
-      spring:
-        r2dbc:
-          url: r2dbc:postgres://pocpostgresql23.postgres.database.azure.com:5432/postgres
-          username: kaushal
-          password: Qwerty123
-          properties:
-            sslMode: REQUIRE
+    producer:
+      producerLinger: "1"
+      producerTimeout: "30000"
+      producerAcksConfig: "all"
+      topic: apmm.locationref.topic.internal.any.v1
+
+azure:
+  mdoblob:
+    connectionString: DefaultEndpointsProtocol=https;AccountName=locationmasterdata;AccountKey=TRo2mejwbL11SzFMhE4l07S9g9ch8uD8drDnn60l4pUjB+o9d+iJ5qM1b7JQf8CGmEKMjX8pKBHM+ASteJv1lQ==;EndpointSuffix=core.windows.net
+    containerName: locationmasterdatacontainer
+    blobName: locationmasterdata
+
+consumer-kafka-config:
+  bootstrap-servers: pkc-4r087.us-west2.gcp.confluent.cloud:9092
+  username: KNGLYLYVX4UYIZN5
+  password: 0vYFQj2zSwVLVLgemUcWVAHy/i2FR0YzMXC757dV/kRE+W7idYFMCfId6rHkE6uK
+  clientId: locationData
+  topic: apmm.locationref.topic.internal.any.v1
+
+
+producer-kafka-config:
+  bootstrap-servers: pkc-6ojv2.us-west4.gcp.confluent.cloud:9092
+  username: YGZWSL4IE7B7EUKG
+  password: yXBPPcK4ZIHRII0ybeGpFaXsLDJn8HBFHLnvgkJC8SApSQ46mhyR/NnOmbzVu0WF
+  clientId: locationData
+  topic: apmm.locationref.topic.internal.any.v1
+
+
+
 
 logging:
   level:
     io.r2dbc.postgresql.QUERY: INFO
     io.r2dbc.postgresql.PARAM: INFO
+    io.confluent.kafka: DEBUG
+
+
 
 
 

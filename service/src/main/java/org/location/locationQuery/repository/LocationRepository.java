@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Flux;
 
+
 public interface LocationRepository extends ReactiveCrudRepository<LocationMaster, Long> {
 
         @Query("SELECT * FROM location_master l " +
